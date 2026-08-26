@@ -9,6 +9,7 @@ This project is based on the https://github.com/adobe-rnd/aem-boilerplate-xwalk/
 The repository provides the basic structure, blocks, and configuration needed to run a complete site with `*.aem.live` as the backend.
 
 ### Key Technologies
+
 - Edge Delivery Services for AEM Sites (documentation at https://www.aem.live/ – search with `site:www.aem.live` to restrict web search results)
 - Vanilla JavaScript (ES6+), no transpiling, no build steps
 - CSS3 with modern features, no Tailwind or other CSS frameworks
@@ -54,22 +55,25 @@ The repository provides the basic structure, blocks, and configuration needed to
 ## Code Style Guidelines
 
 ### JavaScript
+
 - Use ES6+ features (arrow functions, destructuring, etc.)
 - Follow Airbnb ESLint rules (already configured)
 - Always include `.js` file extensions in imports
 - Use Unix line endings (LF)
 
 ### CSS
+
 - Follow Stylelint standard configuration
 - Use modern CSS features (CSS Grid, Flexbox, CSS Custom Properties)
 - Maintain responsive design principles
   - Declare styles mobile first, use `min-width` media queries at 600px/900px/1200px for tablet and desktop
 - Ensure all selectors are scoped to the block.
   - Bad: `.item-list`
-  - Good: `.{blockname} .item-list`   
+  - Good: `.{blockname} .item-list`
 - Avoid classes `{blockname}-container` and `{blockname}-wrapper` as those are used on sections and could be confusing.
 
 ### HTML
+
 - Use semantic HTML5 elements
 - Ensure accessibility standards (ARIA labels, proper heading hierarchy)
 - Follow AEM markup conventions for blocks and sections
@@ -94,13 +98,13 @@ After making changes to the models in partial files (`_{blockname}` for example)
 
 Use `npm run lint` to verify the models follow the best practices. You can refer to https://github.com/adobe-rnd/eslint-plugin-xwalk?tab=readme-ov-file#rules for more details about the applied rules.
 
-Remember, building semantically appealing block, section and document models is key to  built websites with Edge Delivery Services in Adobe Experience Manager Sites as a Cloud Service using Universal Editor.
+Remember, building semantically appealing block, section and document models is key to built websites with Edge Delivery Services in Adobe Experience Manager Sites as a Cloud Service using Universal Editor.
 
 You can find plenty of examples, also for complex use cases, on GitHub https://github.com/adobe-rnd/aem-boilerplate-xwalk/pulls?q=is%3Aopen+is%3Apr+label%3AExample
 
 ### Blocks
 
-Blocks are the re-usable building blocks of AEM. Blocks add styling and functionality to content. Each block has an initial content structure it expects, and transforms the html in the block using DOM APIs to render a final structure. 
+Blocks are the re-usable building blocks of AEM. Blocks add styling and functionality to content. Each block has an initial content structure it expects, and transforms the html in the block using DOM APIs to render a final structure.
 
 The initial content structure is important because it impacts how the author will create the content and how you will write your code to decorate it. In some sense, you can think of this structure as the contract for your block between the author and the developer. You should decide on this initial structure before writing any code, and be careful when making changes to code that makes assumptions about that structure as it could break existing pages.
 
@@ -127,19 +131,21 @@ Each block should be self-contained and re-useable, with CSS and JS files follow
 
 Pages are progressively loaded in three phases to maximize performance. This process begins when `loadPage` from scripts.js is called.
 
-* Eager - load only what is required to get to LCP. This generally includes decorating the overall page content to create sections, blocks, buttons, etc. and loading the first section of the page.
-* Lazy - load all other page content, including the header and footer.
-* Delayed - load things that can be safely loaded later here and incur a performance penalty when loaded earlier
+- Eager - load only what is required to get to LCP. This generally includes decorating the overall page content to create sections, blocks, buttons, etc. and loading the first section of the page.
+- Lazy - load all other page content, including the header and footer.
+- Delayed - load things that can be safely loaded later here and incur a performance penalty when loaded earlier
 
 ## Testing & Quality Assurance
 
 ### Performance
+
 - Follow AEM Edge Delivery performance best practices https://www.aem.live/developer/keeping-it-100
 - Images uploaded by authors are automatically optimized, all images and assets committed to git must be optimized and checked for size
 - Use lazy loading for non-critical resources (`lazy-styles.css` and `delayed.js`)
 - Minimize JavaScript bundle size by avoiding dependencies, using automatic code splitting provided by `/blocks/`
 
 ### Accessibility
+
 - Ensure proper heading hierarchy
 - Include alt text for images
 - Test with screen readers
@@ -160,6 +166,7 @@ With this information, you can construct URLs for the preview environment (same 
 - **Feature Preview**: `https://{branch}--aem-eds--jgwis.aem.page/`
 
 ### Publishing Process
+
 1. Push changes to a feature branch
 2. AEM Code Sync automatically processes changes making them available on feature preview environment for that branch
 3. Run a PageSpeed Insights check at https://developers.google.com/speed/pagespeed/insights/?url=YOUR_URL against the feature preview URL and fix any issues. Target a score of 100
@@ -173,6 +180,7 @@ With this information, you can construct URLs for the preview environment (same 
 ## Troubleshooting
 
 ### Getting Help
+
 - Check [AEM Edge Delivery documentation](https://www.aem.live/docs/)
 - Review [Developer Tutorial](https://www.aem.live/developer/tutorial)
 - Consult [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
