@@ -1,3 +1,7 @@
+.carousel-container .carousel-wrapper {
+    padding: 0;
+    max-width: 100%;
+}
 .carousel .carousel-slides-container {
     position: relative;
 }
@@ -72,8 +76,8 @@
 }
 
 .carousel .carousel-slide-indicator button {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin: 0;
     padding: 0;
     border-radius: 50%;
