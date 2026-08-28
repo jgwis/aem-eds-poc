@@ -16,18 +16,15 @@ export default async function decorate(block) {
     }
 
     const data = await response.json();
-
     const products = data.products || [];
-
     block.innerHTML = `
       <h2 class="products-title">${title}</h2>
-
       <div class="products-grid">
         ${products.map((product) => `
           <article class="product-card">
             <img src="${product.thumbnail}" alt="${product.title}">
             <h4>${product.title}</h4>
-            <p>${product.description}</p>
+           <!-- <p>${product.description}</p> -->
             <strong>$${product.price}</strong>
           </article>
         `).join('')}

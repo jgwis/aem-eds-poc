@@ -1,0 +1,75 @@
+.registration-form {
+  max-width: 42rem;
+  padding: 1.5rem;
+  border: 1px solid #d8d8d8;
+  background: #fff;
+}
+
+.registration-form-fields {
+  display: grid;
+  gap: 1rem;
+}
+
+.registration-form label,
+.registration-form legend {
+  font-weight: 600;
+}
+
+.registration-form label:not(.registration-consent) {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.registration-form input:not([type='checkbox']) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #777;
+  font: inherit;
+}
+
+.registration-form fieldset {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  border: 0;
+}
+
+.registration-form fieldset label,
+.registration-consent {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-weight: 400;
+}
+
+.registration-form button {
+  margin-top: 1.25rem;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.2rem;
+  border: 0;
+  background: #155eef;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.registration-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.registration-status {
+  min-height: 1.5rem;
+  margin: 1rem 0 0;
+}
+
+.registration-status.success {
+  color: #087443;
+}
+
+.registration-status.error {
+  color: #b42318;
+}
