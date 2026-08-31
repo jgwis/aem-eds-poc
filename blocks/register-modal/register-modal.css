@@ -1,0 +1,123 @@
+.register-modal.block {
+    display: contents;
+}
+
+.register-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(0 0 0 / 60%);
+}
+
+.register-modal-overlay[hidden] {
+    display: none !important;
+}
+
+.register-modal {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 32px;
+    background: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+button.register-btn {
+    padding: 10px 20px;
+}
+
+.register-modal-content h2 {
+    margin: 0 0 24px;
+    font-size: 28px;
+}
+
+.register-modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: 0;
+    background: none;
+    font-size: 35px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-weight: 100;
+    color: #666;
+}
+
+.register-modal-close:hover,
+.register-login-button:hover {
+    background: none;
+    color: #999;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-field label {
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-field input:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 1px;
+}
+
+.register-submit {
+    width: 100%;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 6px;
+    background: #0056b3;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.register-login-text {
+    margin: 20px 0 0;
+    text-align: center;
+}
+
+.register-login-button {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: #0056b3;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+body.register-modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 600px) {
+    .register-modal-overlay {
+        align-items: flex-start;
+        padding: 16px;
+    }
+
+    .register-modal {
+        max-height: calc(100vh - 32px);
+        padding: 24px 20px;
+    }
+}

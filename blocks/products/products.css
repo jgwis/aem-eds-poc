@@ -1,3 +1,11 @@
+.products-container .products-wrapper {
+    margin: 24px 0;
+    min-height: 1000px;
+}
+.products-title {
+    margin-bottom: 15px;
+}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -28,4 +36,82 @@
     .products-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* Pagination Control Bar */
+.products-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    border-top: 1px solid #f8f8f8;
+    padding-top: 20px;
+}
+
+/* Base Buttons & Text elements */
+.products-pagination button,
+.pagination-dots {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.products-pagination button {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.products-pagination button span {
+    font-size: 1.2rem;
+    line-height: 0;
+}
+
+/* Hover & Focus States */
+.products-pagination button:hover:not(:disabled) {
+    background-color: #f5f5f5;
+    border-color: #adadad;
+    color: #000;
+}
+
+/* Active Page State */
+.products-pagination button.pagination-number.active {
+    background-color: #0066cc;
+    border-color: #0066cc;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Prev/Next Layout Tweaks */
+.pagination-prev span {
+    margin-right: 4px;
+}
+
+.pagination-next span {
+    margin-left: 4px;
+}
+
+/* Disabled States */
+.products-pagination button:disabled {
+    background-color: #f5f5f5;
+    border-color: #e0e0e0;
+    color: #b5b5b5;
+    cursor: not-allowed;
+}
+
+/* Ellipses Spacing */
+.pagination-dots {
+    color: #888;
+    border: 1px solid transparent;
+    cursor: default;
 }

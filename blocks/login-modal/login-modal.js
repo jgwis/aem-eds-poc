@@ -1,81 +1,122 @@
+/**
+ * Login Modal Block
+ *
+ * @param {Element} block The block element
+ */
 export default function decorate(block) {
-  block.innerHTML = `
-    <button class="login-modal-button" type="button">
-      Login
-    </button>
+  // Create modal overlay
+  const modal = document.createElement('div');
+  modal.className = 'login-modal-overlay';
+  modal.hidden = true;
 
-    <div class="login-modal-overlay" hidden>
-      <div class="login-modal" role="dialog" aria-modal="true">
-        
-        <button class="login-modal-close" type="button" aria-label="Close">
-          &times;
-        </button>
+  // Create modal content INSIDE modal
+  modal.innerHTML = `
+    <div
+      class="login-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="login-modal-title">
 
-        <h2>Login</h2>
+      <button
+        class="login-modal-close"
+        type="button"
+        aria-label="Close">
+        &times;
+      </button>
+
+      <div class="login-modal-content">
+
+        <h3 id="login-modal-title">
+          Sign In
+        </h3>
 
         <form class="login-form">
-          <label>
-            Email
+
+          <div class="form-group">
+            <label for="modal-email">
+              Email
+            </label>
+
             <input
+              id="modal-email"
               type="email"
               name="email"
               required
-              placeholder="Enter email"
-            />
-          </label>
+              autocomplete="email"
+              placeholder="Enter email">
+          </div>
 
-          <label>
-            Password
+          <div class="form-group">
+            <label for="modal-password">
+              Password
+            </label>
+
             <input
+              id="modal-password"
               type="password"
               name="password"
               required
-              placeholder="Enter password"
-            />
-          </label>
+              autocomplete="current-password"
+              placeholder="Enter password">
+          </div>
 
           <button type="submit">
             Login
           </button>
+
         </form>
+
+        <p class="login-register-text">
+          Don't have an account?
+
+          <button
+            type="button"
+            class="login-register-button">
+            Register
+          </button>
+        </p>
 
       </div>
     </div>
   `;
 
-  const openButton = block.querySelector('.login-modal-button');
-  const closeButton = block.querySelector('.login-modal-close');
-  const overlay = block.querySelector('.login-modal-overlay');
-  const form = block.querySelector('.login-form');
+  // Replace block content with modal
+  block.innerHTML = '';
+  block.append(modal);
 
-  // Open modal
-  openButton.addEventListener('click', () => {
-    overlay.hidden = false;
-    document.body.classList.add('modal-open');
+  // Elements
+  const closeButton = modal.querySelector('.login-modal-close');
 
-    overlay.querySelector('input').focus();
-  });
+  const form = modal.querySelector('.login-form');
 
-  function closeModal() {
-    overlay.hidden = true;
-    document.body.classList.remove('modal-open');
+  const registerButton = modal.querySelector('.login-register-button');
+
+  function openModal() {
+    modal.hidden = false;
+    document.body.classList.add('login-modal-open');
+    const firstInput = modal.querySelector('input');
+
+    if (firstInput) {
+      firstInput.focus();
+    }
   }
 
-  // Close modal
-  closeButton.addEventListener('click', () => {
-    closeModal();
-  });
+  function closeModal() {
+    modal.hidden = true;
 
-  // Close when clicking outside modal
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) {
+    document.body.classList.remove('login-modal-open');
+  }
+  closeButton.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
       closeModal();
     }
   });
 
-  // Close with Escape key
+  // Close with Escape
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && !overlay.hidden) {
+    if (event.key === 'Escape' && !modal.hidden) {
       closeModal();
     }
   });
@@ -83,9 +124,7 @@ export default function decorate(block) {
   // Login submit
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-
     const formData = new FormData(form);
-
     const payload = {
       email: formData.get('email'),
       password: formData.get('password'),
@@ -104,17 +143,37 @@ export default function decorate(block) {
 
       if (response.ok) {
         console.log('Login successful', data);
-
+        // Save user details
+        localStorage.setItem('user', JSON.stringify({
+          name: 'Jitendra',
+          email: 'jitendra.mail123@gmail.com',
+        }));
         closeModal();
-
-        // Example redirect
-        window.location.href = '/dashboard';
+        window.location.href = '/products';
       } else {
+        // eslint-disable-next-line no-alert
         alert(data.error || 'Login failed');
       }
     } catch (error) {
       console.error(error);
+
+      // eslint-disable-next-line no-alert
       alert('Unable to connect to login service');
     }
   });
+
+  registerButton.addEventListener('click', () => {
+    closeModal();
+
+    const registerModal = document.querySelector('.register-modal-overlay');
+
+    if (registerModal) {
+      registerModal.hidden = false;
+
+      document.body.classList.add('register-modal-open');
+    }
+  });
+
+  // Expose open function
+  block.openLoginModal = openModal;
 }
